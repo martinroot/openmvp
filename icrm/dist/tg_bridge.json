@@ -1,0 +1,18 @@
+{
+  "system_url": "http://127.0.0.1:8080",
+  "ingest_key": "a2057713287524895445ee659937d06e7431b3611188154d",
+  "session": "/home/main/tguser/session",
+  "api_id": 25007977,
+  "api_hash": "1c7f7d401c09c92cf9fe5dfff19fc1ba",
+  "chats": [
+    {
+      "chat_id": -1004434028499,
+      "project_ref": "WINTASK",
+      "agent_code": "win-195",
+      "agent_bot": "@win1956312899_bot",
+      "poll_sec": 20,
+      "send_enabled": true,
+      "stale_min": 10
+    }
+  ]
+}

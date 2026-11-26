@@ -1,0 +1,16 @@
+
+*.db
+*.sqlite*
+*.session
+.env
+*.log
+*.tmp
+*.bak*
+__pycache__/
+node_modules/
+var/
+money/admin_key
+money/templates/
+money/art/
+money/vendor/
+*.tar.gz

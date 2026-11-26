@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f7fa">
+  <link rel="canonical" href="https://openmvp.online/gantt/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <title>Gantt &amp; API Cost — OpenMVP</title>
+  <link rel="stylesheet" crossorigin href="/assets/index-CWgxjaeK.css">
+  <style>
+    .gantt-shell{padding:26px 0 40px}
+    .gantt-card{background:#fff;border:1px solid #e3e7ef;border-radius:14px;overflow:hidden;box-shadow:0 1px 2px rgba(16,24,40,.04)}
+    .gantt-frame{display:block;width:100%;height:1180px;min-height:520px;border:0}
+    @media (max-width:720px){.gantt-frame{height:calc(100vh - 200px);min-height:420px}}
+    .demo-badge i{display:inline-block;width:7px;height:7px;border-radius:50%;background:#2ea44f;margin-right:5px}
+    .demo-badge{display:inline-flex;align-items:center;border:1px solid #d5e6db;border-radius:999px;padding:2px 9px;background:#f0f9f3;color:#1d7a3d;font-weight:700}
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="shell mast">
+      <a class="wordmark" href="/"><span aria-hidden="true">✳</span>OpenMVP</a>
+      <span class="mast-divider" aria-hidden="true">/</span>
+      <a class="mast-section" href="/#projects">Project tracker</a>
+      <span class="mast-divider" aria-hidden="true">/</span>
+      <a class="mast-section" href="/gantt/" style="color:#171d2b;font-weight:750">Gantt &amp; API Cost</a>
+      <a href="/icrm/" aria-label="Open CRM" style="margin-left:auto;padding:7px 12px;border:1px solid #e4dcff;border-radius:8px;background:#f1edff;color:#5037aa;font-size:.82rem;font-weight:750">CRM <span aria-hidden="true">↗</span></a>
+    </div>
+  </header>
+  <main class="shell gantt-shell">
+    <section aria-labelledby="g-title">
+      <div class="title-row">
+        <div>
+          <p class="eyebrow">SOLO STUDIO / PROJECT LOG</p>
+          <h1 id="g-title" style="font-size:clamp(2rem,4.4vw,3.4rem)">Gantt &amp; API Cost</h1>
+          <p class="intro">Agent runs across studio projects today · hover a bar for details.</p>
+        </div>
+        <div class="snapshot"><span class="demo-badge"><i></i> Live data</span><span>refreshed every 5 min</span></div>
+      </div>
+      <div class="gantt-card">
+        <iframe class="gantt-frame" src="/icrm/public-gantt.php" title="Gantt chart"></iframe>
+      </div>
+    </section>
+  </main>
+  <div class="shell" style="padding-bottom:30px">
+    <footer>OpenMVP <span>Run timeline from the internal tracker.</span></footer>
+  </div>
+</body>
+</html>

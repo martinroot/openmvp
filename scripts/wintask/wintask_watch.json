@@ -1,0 +1,34 @@
+{
+  "tracker": "http://127.0.0.1:8080",
+  "operator_chat_id": 353169388,
+  "poll_seconds": 10,
+  "silent_minutes": 10,
+  "notify_enabled": true,
+  "directions": [
+    {
+      "chat_id": -1004434028499,
+      "project_ref": "Worker.skin",
+      "name": "Worker.skin"
+    },
+    {
+      "chat_id": -1004469933182,
+      "project_ref": "FapTubes.click",
+      "name": "FapTubes.click"
+    },
+    {
+      "chat_id": -1003919000688,
+      "project_ref": "Fabra.live",
+      "name": "Fabra.live"
+    },
+    {
+      "chat_id": -1004478264489,
+      "project_ref": "Cpark.click",
+      "name": "Cpark.click"
+    },
+    {
+      "chat_id": -1004401587834,
+      "project_ref": "GitGame.live",
+      "name": "GitGame.live"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+[Unit]
+Description=SYSTEM: мост Telegram-чат агента <-> трекер проектов
+After=network-online.target php8.3-fpm.service nginx.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=main
+WorkingDirectory=/root/system/dist
+Environment=PYTHONUNBUFFERED=1
+Environment=TG_BRIDGE_CONFIG=/root/system/dist/tg_bridge.json
+Environment=TG_BRIDGE_STATE=/var/lib/tg-bridge/state.json
+Environment=OPERATOR_CHAT_ID=353169388
+EnvironmentFile=-/home/main/.hermes/.env
+ExecStart=/home/main/tguser/venv/bin/python /root/system/dist/tg_bridge.py
+Restart=always
+RestartSec=10
+StandardOutput=append:/var/log/tg_bridge.log
+StandardError=append:/var/log/tg_bridge.log
+
+[Install]
+WantedBy=multi-user.target

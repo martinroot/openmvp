@@ -1,0 +1,22 @@
+[Unit]
+Description=SYSTEM: менеджер направления WINTASK (чат агента -> трекер задач)
+After=network-online.target php8.3-fpm.service nginx.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=main
+WorkingDirectory=/root/system/dist
+Environment=PYTHONUNBUFFERED=1
+Environment=MGR_CONFIG=/root/system/dist/mgr_wintask.json
+Environment=MGR_STATE=/var/lib/tg-mgr/wintask.json
+Environment=OPERATOR_CHAT_ID=353169388
+EnvironmentFile=-/home/main/.hermes/.env
+ExecStart=/home/main/tguser/venv/bin/python /root/system/dist/mgr_wintask.py
+Restart=always
+RestartSec=10
+StandardOutput=append:/var/log/tg_mgr_wintask.log
+StandardError=append:/var/log/tg_mgr_wintask.log
+
+[Install]
+WantedBy=multi-user.target

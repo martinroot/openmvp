@@ -1,0 +1,19 @@
+[Unit]
+Description=WINTASK: статичный сторож чата агента (без LLM)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=main
+WorkingDirectory=/opt/wintask_watch
+EnvironmentFile=/opt/wintask_watch/wintask_watch.env
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/home/main/tguser/venv/bin/python /opt/wintask_watch/wintask_watch.py
+Restart=always
+RestartSec=15
+StandardOutput=append:/var/log/wintask_watch.log
+StandardError=append:/var/log/wintask_watch.log
+
+[Install]
+WantedBy=multi-user.target

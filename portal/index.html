@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f7fa">
+  <meta name="description" content="OpenMVP project tracker. Explore project activity, jobs, tokens, galleries and project briefs.">
+  <link rel="canonical" href="https://openmvp.online/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <title>OpenMVP — Project activity</title>
+  <script type="module" crossorigin src="/assets/index-live.js?v=24"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-CWgxjaeK.css">
+  <link rel="stylesheet" href="/assets/site-extra.css?v=2">
+</head>
+<body>
+  <a class="skip" href="#projects">Skip to projects</a>
+  <header class="topbar">
+    <div class="shell mast">
+      <a class="wordmark" href="#"><span aria-hidden="true">✳</span>OpenMVP</a>
+      <span class="mast-divider" aria-hidden="true">/</span>
+      <a class="mast-section" href="#projects">Projects</a>
+      <a class="mast-section" href="/gantt/">Gantt &amp; API cost</a>
+      <nav class="top-actions" aria-label="Quick links">
+        <a class="top-action green" href="/donate/">Donate</a>
+        <a class="top-action blue" href="/contribute/">Contribute</a>
+        <a class="top-action blue" href="/contact/">Contact</a>
+      </nav>
+      <a class="top-action" href="/icrm/" aria-label="Open CRM" style="border-color:#e4dcff;background:#f1edff;color:#5037aa">CRM <span aria-hidden="true">↗</span></a>
+    </div>
+  </header>
+  <main class="shell">
+    <section class="overview" aria-labelledby="title">
+      <div class="title-row">
+        <div><p class="eyebrow">SOLO STUDIO / PROJECT LOG</p><h1 id="title">Project activity</h1><p class="intro">Edits, jobs and token usage across the studio.</p></div>
+        <div class="snapshot"><span class="demo-badge"><i></i> Demo data</span><span id="snapshot-range"></span></div>
+      </div>
+      <div class="overview-stats" id="overview-stats" aria-label="Studio totals"></div>
+    </section>
+    <section class="projects" id="projects" aria-labelledby="projects-title">
+      <div class="list-heading">
+        <div><h2 id="projects-title">Projects <span id="project-count"></span></h2><p>365-day activity calendar · select a day for details</p></div>
+        <label class="metric-control" for="metric"><span>Growth metric</span><select id="metric" class="form-control"><option value="jobs">Jobs</option><option value="edits">Edits</option><option value="tokens">Tokens</option></select></label>
+      </div>
+      <div id="project-list"></div>
+      <noscript>Enable JavaScript to view the activity dashboard.</noscript>
+    </section>
+    <footer>OpenMVP <span>All activity and usage figures are simulated.</span></footer>
+  <style>.live-badge{background:#e8f7ee;border-color:#bfe8cf;color:#15803d}.live-badge i{background:#15803d}</style>
+  </main>
+
+  <dialog id="gallery" aria-labelledby="gallery-title">
+    <div class="gallery-header">
+      <div><p class="eyebrow">PROJECT GALLERY</p><h2 id="gallery-title"></h2></div>
+      <form method="dialog"><button class="icon-button" aria-label="Close gallery" autofocus>×</button></form>
+    </div>
+    <div class="gallery-content" id="gallery-content"></div>
+    <div class="gallery-footer">
+      <button type="button" class="outline-button" id="gallery-prev" aria-label="Previous preview">←</button>
+      <p id="gallery-position" aria-live="polite"></p>
+      <button type="button" class="outline-button" id="gallery-next" aria-label="Next preview">→</button>
+    </div>
+  </dialog>
+<template id="preview-apimedia">
+<div class="media-stage">
+                <div class="ui-window preset-window">
+                  <div class="window-top"><span><b>✦</b> Preset library</span><small>STYLE SAMPLES</small></div>
+                  <div class="preset-grid">
+                    <figure><img src="/covers/editorial.webp" alt="Fashion portrait in a green dress" width="91" height="162"><figcaption>Editorial</figcaption></figure>
+                    <figure><img src="/covers/cinema.webp" alt="Fiery wings against a dark background" width="91" height="162"><figcaption>Cinematic</figcaption></figure>
+                    <figure><img src="/covers/character.webp" alt="Colorful animated character portrait" width="91" height="162"><figcaption>Characters</figcaption></figure>
+                    <figure><img src="/covers/broadcast.webp" alt="Portrait staged as a news broadcast" width="91" height="162"><figcaption>Broadcast</figcaption></figure>
+                  </div>
+                  <div class="preset-pipeline"><span>Preset</span><span aria-hidden="true">→</span><span>Your input</span><span aria-hidden="true">→</span><strong>Image or video</strong></div>
+                </div>
+              </div>
+</template>
+<template id="preview-fabra">
+<div class="fabra-stage stage">
+                <div class="ui-window fabra-window">
+                  <div class="window-top"><span><b>◈</b> Template library</span><small>200 TEMPLATES</small></div>
+                  <div class="template-grid">
+                    <div><span class="template-icon photo">◩</span><b>Restore a photo</b><small>Creative</small></div>
+                    <div><span class="template-icon copy">✎</span><b>Draft an SEO article</b><small>Content</small></div>
+                    <div><span class="template-icon pdf">▤</span><b>Work with a PDF</b><small>Documents</small></div>
+                    <div><span class="template-icon server">⌘</span><b>Run a server task</b><small>DevOps</small></div>
+                  </div>
+                  <div class="flow-note">Choose a template <span aria-hidden="true">→</span> Give it a brief <span aria-hidden="true">→</span> Run</div>
+                </div>
+              </div>
+</template>
+<template id="preview-tapapp">
+<div class="tap-stage stage">
+                <div class="ui-window tap-window">
+                  <div class="window-top"><span><b>▥</b> App workspace</span><small>DEMO DATA</small></div>
+                  <div class="tap-controls" role="group" aria-label="TapApp demo view">
+                    <button type="button" data-view="analytics" aria-pressed="true" aria-controls="analytics-view">Analytics</button>
+                    <button type="button" data-view="todo" aria-pressed="false" aria-controls="todo-view">ToDo CRM</button>
+                    <button type="button" data-view="paywalls" aria-pressed="false" aria-controls="paywalls-view">Paywalls</button>
+                  </div>
+                  <div class="tap-screen" id="analytics-view">
+                    <div class="dashboard-kpis">
+                      <div><small>Installs</small><strong>12.8k</strong></div>
+                      <div><small>Subscriptions</small><strong>486</strong></div>
+                      <div><small>Revenue</small><strong>$8.4k</strong></div>
+                    </div>
+                    <div class="dash-graph">
+                      <div><b>Revenue trend</b><small>7 days</small></div>
+                      <svg viewBox="0 0 400 67" role="img" aria-label="Demo chart showing an overall increase in revenue over seven days" preserveAspectRatio="none">
+                        <defs><linearGradient id="chart-fill" x2="0" y2="1"><stop stop-color="#765bf6" stop-opacity=".35"/><stop offset="1" stop-color="#765bf6" stop-opacity="0"/></linearGradient></defs>
+                        <path d="M0 12h400M0 37h400M0 62h400" fill="none" stroke="#e5e3ef"/>
+                        <path d="M0 58C29 57 40 44 68 46S110 59 135 51 176 29 200 32 250 41 267 34 310 16 335 20 376 21 400 5V67H0Z" fill="url(#chart-fill)"/>
+                        <path d="M0 58C29 57 40 44 68 46S110 59 135 51 176 29 200 32 250 41 267 34 310 16 335 20 376 21 400 5" fill="none" stroke="#6d51eb" stroke-width="2.5" vector-effect="non-scaling-stroke"/>
+                      </svg>
+                      <div class="graph-days"><span>MON</span><span>SUN</span></div>
+                    </div>
+                  </div>
+                  <div class="tap-screen" id="todo-view" hidden>
+                    <p class="screen-title">Release checklist</p>
+                    <ul class="activity-list"><li><span>✓</span> Review install metrics <small>Done</small></li><li><span>◐</span> Prepare onboarding paywall <small>In progress</small></li><li><span>○</span> Check subscription events <small>To do</small></li></ul>
+                  </div>
+                  <div class="tap-screen" id="paywalls-view" hidden>
+                    <p class="screen-title">Subscription activity</p>
+                    <ul class="activity-list"><li><span>↗</span> Onboarding paywall <small>Displayed</small></li><li><span>＋</span> Monthly trial <small>Started</small></li><li><span>↻</span> Annual plan <small>Renewed</small></li></ul>
+                  </div>
+                  <div class="integration"><i></i> RevenueCat integration</div>
+                </div>
+              </div>
+</template>
+<template id="preview-gitgame">
+<div class="game-stage stage">
+                <figure><img src="/covers/gitgame-fishing.jpg" width="640" height="360" alt="" loading="lazy"><figcaption>Deep Blue — Fishing</figcaption></figure>
+                <figure><img src="/covers/gitgame-jamblob.jpg" width="640" height="360" alt="" loading="lazy"><figcaption>Jamblob Sandbox</figcaption></figure>
+              </div>
+</template>
+<template id="preview-aispy">
+<div class="spy-stage stage">
+                <div class="radar" aria-hidden="true"><i></i><i></i><i></i><span></span><b></b></div>
+                <div class="radar-index"><p>AI DISCOVERY</p><span>↗ New launches</span><span>◇ Open source</span><span>⊞ Categories</span></div>
+              </div>
+</template>
+<template id="preview-fapa">
+<div class="fapa-stage stage" aria-label="Illustration of a vertical swipe feed">
+                <div class="feed-phone" aria-hidden="true"><span class="feed-top">For you <b>18+</b></span><span class="feed-preview"><i>▶</i><small>CREATOR FEED</small></span><span class="feed-next">↑ &nbsp; Swipe to discover</span></div>
+                <div class="feed-labels" aria-hidden="true"><span>For you</span><span>Creators</span><span>Tags</span></div>
+              </div>
+</template>
+</body>
+</html>

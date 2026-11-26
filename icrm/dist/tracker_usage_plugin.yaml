@@ -1,0 +1,7 @@
+name: tracker-usage
+version: 1.0.0
+description: "Учёт вызовов моделей: после каждого API-вызова отправляет в трекер SYSTEM модель, токены (in/cache/out/think), время и стоимость."
+hooks:
+  - post_api_request
+  - on_session_end
+  - on_session_finalize
