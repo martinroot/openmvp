@@ -37,11 +37,11 @@ for rel in FILES:
         fails.append('DIFF %s' % rel)
 
 checks = {
-    'index.html': [b'index-live.js?v=36'],
+    'index.html': [b'index-live.js?v=37'],
     'assets/index-live.js': [
-        b'/* --- 9:16 project previews --- */',
+        b'/* --- 9:16 project promo images --- */',
         b'var PROMO={',
-        b"has-image",
+        b'pp-image',
     ],
     'donate/index.html': [b'/donate/create.php', b'assets/coins/'],
     'donate/create.php': [b'/etc/openmvp/dv.env'],
