@@ -8,6 +8,31 @@
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="stylesheet" crossorigin href="/assets/index-CWgxjaeK.css">
   <link rel="stylesheet" href="/assets/site-extra.css?v=2">
+  <style>
+    .donate-widget{display:grid;grid-template-columns:minmax(260px,1fr) minmax(240px,1fr);gap:18px;margin-top:22px;align-items:stretch}
+    @media(max-width:720px){.donate-widget{grid-template-columns:1fr}}
+    .donate-form,.donate-side{background:#fff;border:1px solid var(--line,#e5e7eb);border-radius:12px;padding:18px}
+    .donate-form label{display:block;font-size:.8rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted,#64748b);margin-bottom:8px}
+    .donate-input-wrap{display:flex;align-items:center;gap:8px;border:1px solid #d9dde5;border-radius:10px;padding:0 14px;background:#fbfcfe;transition:border-color .15s,box-shadow .15s}
+    .donate-input-wrap:focus-within{border-color:#16a34a;box-shadow:0 0 0 3px rgba(22,163,74,.12)}
+    .donate-input-wrap span{font-size:1.35rem;font-weight:700;color:#0f172a}
+    .donate-input-wrap input{border:0;outline:0;background:transparent;width:100%;padding:13px 0;font-size:1.35rem;font-weight:700;color:#0f172a;font-variant-numeric:tabular-nums}
+    .donate-presets{display:flex;gap:7px;flex-wrap:wrap;margin:11px 0 16px}
+    .donate-presets button{border:1px solid #d9dde5;background:#fff;border-radius:999px;padding:6px 13px;font:inherit;font-size:.85rem;font-weight:600;color:#334155;cursor:pointer;transition:.15s}
+    .donate-presets button:hover{border-color:#16a34a;color:#15803d}
+    .donate-presets button.active{background:#e8f7ee;border-color:#16a34a;color:#15803d}
+    .donate-pay{width:100%;justify-content:center;display:flex;align-items:center;gap:8px;border:0;cursor:pointer;font:inherit;font-weight:700;font-size:.95rem;padding:13px 18px;border-radius:10px}
+    .donate-pay[disabled]{opacity:.65;cursor:wait}
+    .donate-msg{min-height:1.2em;margin:10px 0 0;font-size:.85rem;color:#b91c1c}
+    .donate-msg.ok{color:#15803d}
+    .donate-lead{margin:0 0 12px;font-size:.8rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted,#64748b)}
+    .coin-row{display:flex;flex-wrap:wrap;gap:8px}
+    .coin{display:flex;align-items:center;gap:6px;border:1px solid #e6e9ef;border-radius:999px;padding:5px 10px 5px 6px;background:#fbfcfe;font-size:.78rem;font-weight:700;color:#334155}
+    .coin img{width:20px;height:20px;display:block}
+    .donate-fine{font-size:.8rem;line-height:1.55;color:var(--muted,#64748b);margin:14px 0 0}
+    .donate-success{padding:16px;border:1px solid #bbf7d0;background:#f0fdf4;border-radius:12px;color:#166534;line-height:1.6}
+    .donate-success b{display:block;margin-bottom:4px;font-size:1.05rem}
+  </style>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -29,11 +54,100 @@
     <section class="page-hero">
       <p class="eyebrow">SOLO STUDIO / SUPPORT</p>
       <h1>Support development</h1>
-      <p>OpenMVP tracks real work across the studio: agent runs, API spend and project history. Hosting, domains and model calls are paid out of pocket. Every contribution keeps the tracker and its public pages online.</p>
-      <div class="page-actions"><a class="top-action solid-green" href="/contact/">Ask for donation details →</a><a class="top-action blue" href="/">← Back to projects</a></div>
+      <p>OpenMVP tracks real work across the studio: agent runs, API spend and project history. Hosting, domains and model calls are paid out of pocket. Pick an amount and pay with crypto — the tracker and its public pages stay open for everyone.</p>
+      <div class="donate-widget" id="donateWidget">
+        <div class="donate-form">
+          <label for="donateAmount">Your contribution (USD)</label>
+          <div class="donate-input-wrap"><span aria-hidden="true">$</span><input id="donateAmount" type="number" min="1" max="1000" step="0.01" inputmode="decimal" value="5" autocomplete="off"></div>
+          <div class="donate-presets" id="donatePresets" aria-label="Quick amounts">
+            <button type="button" data-amount="5" class="active">$5</button>
+            <button type="button" data-amount="10">$10</button>
+            <button type="button" data-amount="25">$25</button>
+            <button type="button" data-amount="50">$50</button>
+            <button type="button" data-amount="100">$100</button>
+          </div>
+          <button type="button" class="donate-pay" id="donatePay">Continue to payment <span aria-hidden="true">↗</span></button>
+          <p class="donate-msg" id="donateMsg" role="status" aria-live="polite"></p>
+        </div>
+        <div class="donate-side">
+          <p class="donate-lead">Accepted coins</p>
+          <div class="coin-row">
+            <span class="coin"><img src="/assets/coins/BTC.svg" alt="">BTC</span>
+            <span class="coin"><img src="/assets/coins/ETH.svg" alt="">ETH</span>
+            <span class="coin"><img src="/assets/coins/USDT.svg" alt="">USDT</span>
+            <span class="coin"><img src="/assets/coins/USDC.svg" alt="">USDC</span>
+            <span class="coin"><img src="/assets/coins/DAI.svg" alt="">DAI</span>
+            <span class="coin"><img src="/assets/coins/TRX.svg" alt="">TRX</span>
+            <span class="coin"><img src="/assets/coins/LTC.svg" alt="">LTC</span>
+            <span class="coin"><img src="/assets/coins/BCH.svg" alt="">BCH</span>
+            <span class="coin"><img src="/assets/coins/BNB.svg" alt="">BNB</span>
+            <span class="coin"><img src="/assets/coins/POL.svg" alt="">POL</span>
+            <span class="coin"><img src="/assets/coins/DOGE.svg" alt="">DOGE</span>
+          </div>
+          <p class="donate-fine">You choose the coin and network on the secure OpenPay / DV.net checkout. The amount stays in USD; the crypto equivalent is calculated there. We never see your wallet or payment details.</p>
+        </div>
+      </div>
     </section>
-    <section class="page-grid"><article class="page-card"><h2>What it pays for</h2><p>Servers, domains, model API calls and the databases behind the activity charts. No ads, no paywall — the public pages stay open.</p></article><article class="page-card"><h2>How to donate</h2><p>Payment details are shared on request. Write to the Telegram contact and mention <b>donation</b> — you will get the current details and a confirmation.</p></article><article class="page-card"><h2>Prefer to help in code?</h2><p>Documentation, bug reports and pull requests are just as useful. See the <a href="/contribute/">contribution page</a>.</p></article></section>
+    <section class="page-grid">
+      <article class="page-card"><h2>What it pays for</h2><p>Servers, domains, model API calls and the databases behind the activity charts. No ads, no paywall — the public pages stay open.</p></article>
+      <article class="page-card"><h2>How it works</h2><p>Enter an amount, continue to the checkout, pick a coin and network, then send the payment to the address shown. Confirmation arrives by webhook; the order is marked paid automatically.</p></article>
+      <article class="page-card"><h2>Prefer to help in code?</h2><p>Documentation, bug reports and pull requests are just as useful. See the <a href="/contribute/">contribution page</a>.</p></article>
+    </section>
     <p class="page-note">OpenMVP · Project activity and studio links</p>
   </main>
+  <script>
+  (function(){
+    var widget = document.getElementById('donateWidget');
+    if (new URLSearchParams(location.search).get('paid') === '1') {
+      widget.innerHTML = '<div class="donate-success"><b>Thank you for supporting OpenMVP.</b>Your payment is being confirmed by OpenPay. A receipt with the transaction details is available on the checkout page.</div>';
+      return;
+    }
+    var input = document.getElementById('donateAmount');
+    var pay = document.getElementById('donatePay');
+    var msg = document.getElementById('donateMsg');
+    var presets = document.getElementById('donatePresets');
+    presets.addEventListener('click', function(e){
+      var b = e.target.closest('button[data-amount]');
+      if (!b) return;
+      input.value = b.dataset.amount;
+      Array.prototype.forEach.call(presets.children, function(x){ x.classList.toggle('active', x === b); });
+      msg.textContent = '';
+    });
+    input.addEventListener('input', function(){
+      Array.prototype.forEach.call(presets.children, function(x){ x.classList.remove('active'); });
+      msg.textContent = '';
+    });
+    function go(){
+      var amount = Number(input.value);
+      if (!isFinite(amount) || amount < 1 || amount > 1000) {
+        msg.className = 'donate-msg';
+        msg.textContent = 'Enter an amount between $1 and $1000.';
+        input.focus();
+        return;
+      }
+      pay.disabled = true;
+      var label = pay.innerHTML;
+      pay.textContent = 'Creating payment…';
+      msg.textContent = '';
+      fetch('/donate/create.php', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json','Accept':'application/json'},
+        body: JSON.stringify({amount: amount})
+      }).then(function(r){ return r.json().then(function(j){ return {status:r.status, j:j}; }); })
+        .then(function(res){
+          if (res.status !== 200 || !res.j.ok || !res.j.pay_url) throw new Error(res.j.error || 'Could not create a payment.');
+          location.href = res.j.pay_url;
+        })
+        .catch(function(err){
+          msg.className = 'donate-msg';
+          msg.textContent = err.message || 'Could not create a payment. Try again.';
+          pay.disabled = false;
+          pay.innerHTML = label;
+        });
+    }
+    pay.addEventListener('click', go);
+    input.addEventListener('keydown', function(e){ if (e.key === 'Enter') { e.preventDefault(); go(); } });
+  })();
+  </script>
 </body>
 </html>
