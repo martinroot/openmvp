@@ -166,6 +166,7 @@
 /* --- 9:16 project previews --- */
 ;(function(){
   function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  var PROMO={apimedia:'/covers/editorial.webp',fabra:'/covers/fabra-agent.jpg',gitgame:'/covers/gitgame-fishing.jpg'};
   function ensureStyles(){
     if(document.getElementById('pp-style'))return;
     var st=document.createElement('style');st.id='pp-style';
@@ -182,6 +183,10 @@
       '.pp-bars{display:flex;align-items:flex-end;gap:2px;height:17px;margin-top:5px;position:relative;z-index:1}',
       '.pp-bars i{flex:1;min-width:2px;background:rgba(255,255,255,.85);border-radius:2px 2px 0 0}',
       '.pp-metric{font-size:6.5px;font-weight:700;margin-top:3px;opacity:.95;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;position:relative;z-index:1}',
+      '.project-preview.has-image{padding:6px;background:#0f172a;border-color:rgba(255,255,255,.18)}',
+      '.pp-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}',
+      '.pp-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,23,42,.10),rgba(15,23,42,.82));z-index:0}',
+      '.has-image .pp-mark,.has-image .pp-bars{display:none}',
       '@media(max-width:520px){.project-row .project-main{grid-template-columns:68px minmax(0,1fr);gap:10px}.project-preview{width:68px;border-radius:8px}.pp-mark{font-size:24px}.pp-name{font-size:8px}}'
     ].join('\n');
     document.head.appendChild(st);
@@ -210,13 +215,16 @@
       var color=m?m[1].trim():'#4f46e5';
       var copy=document.createElement('div');copy.className='project-copy';
       while(main.firstChild)copy.appendChild(main.firstChild);
-      var p=document.createElement('div');p.className='project-preview';p.setAttribute('aria-hidden','true');
+      var promo=PROMO[row.id]||'';
+      var p=document.createElement('div');p.className='project-preview'+(promo?' has-image':'');p.setAttribute('aria-hidden','true');
       p.style.setProperty('--pc',color);
-      p.innerHTML='<div class="pp-top"><span>OPENMVP</span><b>9:16</b></div>'+
-        '<div class="pp-mark">'+esc(mark)+'</div>'+
+      var lead=promo?'<img class="pp-image" src="'+promo+'" alt="" onerror="this.remove();this.parentNode.classList.remove(\'has-image\')"><div class="pp-shade"></div>':'';
+      var mid1=promo?'':'<div class="pp-mark">'+esc(mark)+'</div>';
+      var mid2=promo?'':'<div class="pp-bars">'+bars(row)+'</div>';
+      p.innerHTML=lead+
+        '<div class="pp-top"><span>OPENMVP</span><b>9:16</b></div>'+mid1+
         '<div class="pp-type">'+esc(type)+'</div>'+
-        '<div class="pp-name">'+esc(name)+'</div>'+
-        '<div class="pp-bars">'+bars(row)+'</div>'+
+        '<div class="pp-name">'+esc(name)+'</div>'+mid2+
         '<div class="pp-metric">'+esc(metrics(row))+'</div>';
       main.appendChild(copy);main.insertBefore(p,copy);
     });
