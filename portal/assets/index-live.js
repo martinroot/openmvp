@@ -162,37 +162,3 @@
     }
   }).catch(function(){});
 })();
-
-/* --- 9:16 project promo images --- */
-;(function(){
-  var PROMO={apimedia:'/covers/editorial.webp',fabra:'/covers/fabra-agent.jpg',gitgame:'/covers/gitgame-fishing.jpg'};
-  function ensureStyles(){
-    if(document.getElementById('pp-style'))return;
-    var st=document.createElement('style');st.id='pp-style';
-    st.textContent=[
-      '.project-row .project-main{display:grid;grid-template-columns:84px minmax(0,1fr);gap:14px;align-items:start}',
-      '.project-row .project-copy{display:flex;flex-direction:column;align-items:flex-start;min-width:0}',
-      '.project-preview{position:relative;overflow:hidden;width:84px;aspect-ratio:9/16;border-radius:10px;background:color-mix(in srgb,var(--pc) 70%,#0f172a);border:1px solid color-mix(in srgb,var(--pc) 45%,transparent);box-shadow:0 6px 16px rgba(15,23,42,.12)}',
-      '.pp-image{display:block;width:100%;height:100%;object-fit:cover}',
-      '@media(max-width:520px){.project-row .project-main{grid-template-columns:68px minmax(0,1fr);gap:10px}.project-preview{width:68px;border-radius:8px}}'
-    ].join('\n');
-    document.head.appendChild(st);
-  }
-  function build(){
-    ensureStyles();
-    Array.prototype.forEach.call(document.querySelectorAll('.project-row'),function(row){
-      var main=row.querySelector('.project-main');
-      if(!main||row.querySelector('.project-preview'))return;
-      var m=/\-\-project-color:\s*([^;]+)/.exec(row.getAttribute('style')||'');
-      var color=m?m[1].trim():'#4f46e5';
-      var copy=document.createElement('div');copy.className='project-copy';
-      while(main.firstChild)copy.appendChild(main.firstChild);
-      var p=document.createElement('div');p.className='project-preview';p.setAttribute('aria-hidden','true');
-      p.style.setProperty('--pc',color);
-      var img=PROMO[row.id];
-      if(img)p.innerHTML='<img class="pp-image" src="'+img+'" alt="">';
-      main.appendChild(copy);main.insertBefore(p,copy);
-    });
-  }
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',build);else build();
-})();
