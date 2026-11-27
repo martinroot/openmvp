@@ -37,15 +37,17 @@ for rel in FILES:
         fails.append('DIFF %s' % rel)
 
 checks = {
-    'index.html': [b'index-live.js?v=37'],
+    'index.html': [b'index-live.js?v=38'],
     'assets/index-live.js': [
-        b'/* --- 9:16 project promo images --- */',
-        b'var PROMO={',
-        b'pp-image',
+        b'repo:"https://github.com/martinroot/',
     ],
     'donate/index.html': [b'/donate/create.php', b'assets/coins/'],
     'donate/create.php': [b'/etc/openmvp/dv.env'],
 }
+for needle in (b'project-preview', b'var PROMO=', b'pp-image'):
+    p = ROOT / 'portal/assets/index-live.js'
+    if p.is_file() and needle in p.read_bytes():
+        fails.append('UNEXPECTED %s' % needle.decode())
 for rel, needles in checks.items():
     p = ROOT / 'portal' / rel
     if p.is_file():
